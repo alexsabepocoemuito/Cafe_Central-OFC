@@ -1,0 +1,74 @@
+[
+    {
+        "titulo":"Espresso",
+        "img":"../img/espresso.png",
+        "desc":"Um shot concentrado e aromático do nosso blend especial, com crema perfeita. Ideal para os amantes do café puro.",
+        "preco":"R$3,00"
+    },
+    {
+        "titulo":"Latte Macchiato",
+        "img":"../img/latte_macchiato.png",
+        "desc":"Leite vaporizado delicadamente manchado com um shot de espresso, criando camadas visíveis e um sabor suave e cremoso.",
+        "preco":"R$8,00"
+    },
+    {
+        "titulo":"Sanduíche de Queijo Quente",
+        "img":"../img/sanduiche_de_queijo_quente.png",
+        "desc":"Pão de forma tostado com queijo mussarela derretido. Simples e delicioso.",
+        "preco":"R$8,00"
+    },
+    {
+        "titulo":"Cappuccino Clássico",
+        "img":"../img/cappuccino_classico.png",
+        "desc":"Uma bebida encorpada, com sabor equilibrado, sem chocolate e servida com um toque de canela por cima, oferecendo textura aveludada e aroma intenso.",
+        "preco":"R$8,00"
+    },
+    {
+        "titulo":"Baguete Recheada",
+        "img":"../img/baguete_recheada.png",
+        "desc":"Baguete crocante recheada com presunto, queijo e tomate fresco. Ideal para um lanche rápido e saboroso.",
+        "preco":"R$9,00"
+    },
+    {
+        "titulo":"Quiche Lorraine",
+        "img":"../img/quiche_lorraine.png",
+        "desc":"Uma torta salgada clássica francesa, com recheio cremoso de bacon e queijo. Servida com uma pequena salada verde.",
+        "preco":"R$5,00"
+    },
+    {
+        "titulo":"Bolo Red Velvet",
+        "img":"../img/bolo_red_velvet.png",
+        "desc":"Fatias de maçã caramelizada em uma massa crocante, servida quente com uma bola de sorvete de creme.",
+        "preco":"R$9,00"
+    },
+    {
+        "titulo":"Pão de Queijo Artesanal",
+        "img":"../img/pao_de_queijo_artesanal.png",
+        "desc":"Delicioso pão de queijo artesanal, feito com leite e queijo fresco. O sabor autêntico que encanta todos os paladares.",
+        "preco":"R$6,00"
+    },
+    {
+        "titulo":"Brownie de Chocolate com Nozes",
+        "img":"../img/brownie_de_chocolate_com_nozes.png",
+        "desc":"Intenso e úmido, com pedaços crocantes de nozes. Uma explosão de sabor a cada mordida.",
+        "preco":"R$7,00"
+    },
+    {
+        "titulo":"Mocha",
+        "img":"../img/mocha.png",
+        "desc":"Uma deliciosa combinação de espresso, chocolate premium, leite vaporizado e chantilly, para um toque de indulgência.",
+        "preco":"R$7,00"
+    },
+    {
+        "titulo":"Croissant Amanteigado",
+        "img":"../img/croissant_amanteigado.png",
+        "desc":"Crocante por fora, macio por dentro, com o sabor inconfundível da manteiga. Perfeito para acompanhar seu café.",
+        "preco":"R$7,00"
+    },
+    {
+        "titulo":"Torta de Maçã com Sorvete",
+        "img":"../img/torta_de_maca_com_sorvete.png",
+        "desc":"Fatias de maçã caramelizada em uma massa crocante, servida quente com uma bola de sorvete de creme.",
+        "preco":"R$8,00"
+    }
+]

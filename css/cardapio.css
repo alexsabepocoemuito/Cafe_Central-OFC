@@ -1,0 +1,234 @@
+/* ======= CARDÁPIO ======= */
+.cardapio-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: white;
+    flex: 1;
+}
+
+.cardapio-titulo {
+    text-align: center;
+    font-size: 3em;
+    color: #e4ad76;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.busca-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#BuscarItens {
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#BuscarItens:focus {
+    outline: none;
+    box-shadow: 0 4px 12px rgba(228, 173, 118, 0.4);
+}
+
+.lista-itens {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 3px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background-color: #ab886d;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-color: #745739;
+}
+
+.card h3 {
+    margin: 10px 0;
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.card p {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    height: 60px;
+    overflow: hidden;
+    color: #f0f0f0;
+}
+
+.card .preco {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #202427;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.btn-detalhes {
+    background-color: #202427;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.btn-detalhes:hover {
+    background-color: #000;
+}
+
+/* ======= PÁGINAS DE DETALHES (CE, DS, SL) ======= */
+.detalhes-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: white;
+    flex: 1;
+}
+
+.detalhes-titulo {
+    text-align: center;
+    font-size: 2.5em;
+    color: #e4ad76;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.itens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.item-detalhes {
+    background-color: #ab886d;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.item-detalhes h3 {
+    color: #fff;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.item-detalhes img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-color: #745739;
+}
+
+.item-detalhes p {
+    font-size: 0.95em;
+    margin-bottom: 15px;
+    color: #f0f0f0;
+    line-height: 1.6;
+}
+
+.item-detalhes .preco {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #202427;
+    display: block;
+    margin-top: 15px;
+}
+
+.navegacao {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.btn-nav {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px 20px;
+    background-color: #e4ad76;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btn-nav:hover {
+    background-color: #000;
+}
+
+.btn-nav:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+
+.categoria-links{
+    font-size: 1.2rem; /* Aumenta o tamanho do texto */
+    padding: 10px 20px; /* Aumenta a área clicável */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o emoji e o texto */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .cardapio-titulo {
+        font-size: 2em;
+    }
+
+    .detalhes-titulo {
+        font-size: 1.8em;
+    }
+
+    .lista-itens {
+        grid-template-columns: 1fr;
+    }
+
+    .itens-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navegacao {
+        flex-direction: column;
+    }
+
+    .btn-nav {
+        width: 100%;
+    }
+}

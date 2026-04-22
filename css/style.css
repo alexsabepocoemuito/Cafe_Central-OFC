@@ -1,0 +1,114 @@
+/* ======= CONFIGURAÇÕES GERAIS ======= */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #222;
+    background-color: #745739;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ======= CABEÇALHO ======= */
+header.topo {
+    background-color: #ab886d;
+    color: #ffff;
+    padding: 20px;
+}
+
+header.topo a { 
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo a, img {
+    display: flex;
+    justify-content: center;
+}
+
+/* ======= MENU DE NAVEGAÇÃO ======= */
+nav.menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav.menu a {
+    color: #faf7f3;
+    margin: 20px 50px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+}
+
+nav.menu a:hover {
+    color: #e4ad76;
+}
+
+nav.menu a.ativo {
+    color: #e4ad76;
+    border-bottom: 3px solid #e4ad76;
+    padding-bottom: 5px;
+}
+
+/* ======= RODAPÉ ======= */
+footer.rodape {
+    background-color: #202427;
+    color: #ffff;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+footer.rodape a {
+    color: #e4ad76;
+    text-decoration: none;
+}
+
+footer.rodape a:hover {
+    text-decoration: underline;
+}
+
+footer.rodape p {
+    margin: 5px 0;
+}
+
+/* ======= RESPONSIVO ======= */
+@media (max-width: 768px) {
+    nav.menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav.menu a {
+        margin: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    header.topo {
+        padding: 15px;
+    }
+
+    footer.rodape {
+        font-size: 12px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav.menu a {
+        margin: 8px 10px;
+        font-size: 0.8em;
+    }
+
+    header.topo {
+        padding: 10px;
+    }
+}

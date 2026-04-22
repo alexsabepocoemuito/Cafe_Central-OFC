@@ -1,0 +1,106 @@
+/* ======= PÁGINA DE CONTATO ======= */
+
+.contato {
+    flex: 1;
+    padding: 40px 20px;
+    color: white;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ab886d;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.form-container h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #e4ad76;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.campo input,
+.campo textarea {
+    padding: 12px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(228, 173, 118, 0.5);
+}
+
+.campo textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-enviar {
+    background-color: #202427;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-enviar:hover {
+    background-color: #000;
+}
+
+.btn-enviar:active {
+    transform: scale(0.98);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 25px;
+    }
+
+    .form-container h1 {
+        font-size: 1.8em;
+    }
+
+    .campo label {
+        font-size: 1em;
+    }
+
+    .btn-enviar {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}

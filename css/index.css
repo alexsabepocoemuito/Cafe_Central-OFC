@@ -1,0 +1,99 @@
+/* ======= SEÇÃO HERO - HOME ======= */
+
+.hero {
+    flex: 1;
+    text-align: right;
+}
+
+.hero img {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 50px 50px rgba(1, 1, 1, 0.3);
+}
+
+.hero-principal {
+    background-color: #745739;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.hero-imagem {
+    flex: 1;
+}
+
+.hero-texto {
+    flex: 1;
+    color: #fff;
+    text-align: left;
+}
+
+.hero-texto h2 {
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: normal;
+    color: #e4ad76;
+}
+
+.hero-texto h1 {
+    font-size: 4em;
+    margin: 0;
+    color: #e4ad76;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* ======= RESPONSIVO ======= */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-imagem, 
+    .hero-texto {
+        text-align: center;
+        flex: 1;
+    }
+
+    .hero-texto h2 {
+        font-size: 1.8em;
+    }
+
+    .hero-texto h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-principal {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-texto h2 {
+        font-size: 1.5em;
+    }
+
+    .hero-texto h1 {
+        font-size: 2em;
+    }
+
+    .hero img {
+        max-width: 100%;
+    }
+}
