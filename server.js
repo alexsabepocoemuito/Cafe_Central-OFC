@@ -121,9 +121,9 @@ app.post("/cadastro", async (req,res) => {
         }
 
         // Crio um array[rows] e guardo dentro o resultado do select
-        const [rows] = await pool.execute(  //consulta no banco
-            "SELECT id_usuario FROM tb_usuario WHERE email=?",[email] 
-                //busca se o e-mail existe no banco e retorna o id
+        // Por isso (adicione o _usuario):
+        const [rows] = await pool.execute( 
+            "SELECT id_usuario FROM tb_usuario WHERE email_usuario=?",[email] 
         );
 
         if(rows.length > 0){
@@ -162,9 +162,8 @@ app.post("/login", async (req,res) => {
         }
 
         // Crio um array[rows] e guardo dentro o resultado do select
-        const [rows] = await pool.execute(  //consulta no banco
-            "SELECT id_usuario, nome_usuario, email_usuario, senha_usuario FROM tb_usuario WHERE email=?",[email] 
-                //busca se o e-mail existe no banco e retorna o id
+        const [rows] = await pool.execute( 
+            "SELECT id_usuario, nome_usuario, email_usuario, senha_usuario FROM tb_usuario WHERE email_usuario=?",[email] 
         );
 
         if(rows.length == 0){
