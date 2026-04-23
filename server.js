@@ -26,9 +26,9 @@ const app = express();
 
 // 7. Cria uma lista de instância de conexões
 const listOrigins = [
-    "http://localhost:3000", // ambiente local (live server)
+    "http://localhost:5501", // ambiente local (live server)
     "http://127.0.0.1:5501", // variação de localhost
-    "https://cafe-central-ofc-mbgd.onrender.com/" // dominio do frontend em produção
+    "https://alexsabepocoemuito.github.io" // dominio do frontend em produção
 ]
 
 // 8. Ativa o CORS - libera a comunicação entre front-end e back-end
