@@ -136,7 +136,7 @@ app.post("/cadastro", async (req,res) => {
 
         // Inserir os dados no banco de dados
         await pool.execute( // executa o INSERT no banco
-            "INSERT INTO tb_usuario(nome_usuario,email_usuario,senha_usuario) VALUES(?,?,?)",
+            "INSERT INTO tb_usuario(nome_usuario, email_usuario, senha_usuario) VALUES(?,?,?)",
                         [nome,email,senhaHash] // substitui os ? pelos valores reais
         );
         // retorna 201 (criado com sucesso)
@@ -155,49 +155,52 @@ app.post("/login", async (req,res) => {
         //const email = req.body.email
         //const senha = req.body.senha
 
-        const {email,senha} = req.body // forma desestruturada
+        const {email,senha} = req.body; // forma desestruturada
 
         if(!email || !senha ){
-            return res.status(400).json({erro:"Preencha todos os campos"});
-        }
-
-        // Crio um array[rows] e guardo dentro o resultado do select
-        const [rows] = await pool.execute( 
-            "SELECT id_usuario, nome_usuario, email_usuario, senha_usuario FROM tb_usuario WHERE email_usuario=?",[email] 
-        );
-
-        if(rows.length == 0){
-            // retorna 401 se não achar usuário com esse e-mail
-            return res.status(401).json({erro: "Usuário não encontrado"});
+            return res.status(400).json({error:"Preencha todos os campos"});
         };
 
-        const usuario = rows[0] // pega o primeiro (e único) resultado de consulta
+        // Crio um array[rows] e guardo dentro o resultado do select
+        // ... após o seu SELECT
+        const [rows] = await pool.execute( 
+            "SELECT * FROM tb_usuario WHERE email_usuario=?",[email] 
+        );
 
-        // descriptografa a senha e guarda dentro da variável
-        const senhaCorreta = await bcrypt.compare(senha,usuario.senha)
-            // compara a senha digitada com a senha hash salvo no banco (true/false)
+        if(rows.length === 0){
+            return res.status(401).json({erro: "Usuário não encontrado"});
+        }
+
+        const usuario = rows[0];
+
+        // Se o log acima mostrar que o campo está vazio ou não existe, o erro está aqui:
+        if (!usuario.senha_usuario) {
+            return res.status(500).json({erro: "Erro interno: A coluna de senha não foi carregada."});
+        }
+
+        const senhaCorreta = await bcrypt.compare(senha, usuario.senha_usuario);
 
         if(!senhaCorreta){
             // senha hash for diferente da senha digitada
-            return res.status(401).json({erro: "Senha inválida"});
+            return res.status(401).json({error: "Senha inválida"});
             // 401 - acesso não autorizado
         };
 
         req.session.usuario = {
             // cria a sessão no servidor com os dados do usuário
-            id: usuario.id, // ID interno do usuário
-            nome: usuario.nome, // nome para exibir na interface
-            email: usuario.email // email para referência futura
-        }
+            id: usuario.id_usuario, // ID interno do usuário
+            nome: usuario.nome_usuario, // nome para exibir na interface
+            email: usuario.email_usuario // email para referência futura
+        };
 
         res.json({mensagem:"Login realizado com sucesso!"});
         // status=200
     } catch(error){
         // retorna 500 se o servidor não conseguir cadastrar
         console.error(error); // aparece no terminal pro dev
-        res.status(500).json({erro: "Erro ao fazer login"})
-    }
-})
+        res.status(500).json({error: "Erro ao fazer login"})
+    };
+});
 
 // 4. Define a rota get "/me" - verificar sessão
 app.get("/me", (req, res) => {

@@ -9,14 +9,14 @@ if (formCadastro) {
         const email = document.getElementById("email").value.trim();
         const senha = document.getElementById("senha").value;
         const confirmaSenha = document.getElementById("confirmaSenha").value;
-        const mensagem = document.getElementById("mensagemCadastro");
+        const mensagemCadastro = document.getElementById("mensagemCadastro");
         
         if (!nome || !email || !senha || !confirmaSenha) {
-            mensagem.textContent = "Preencha todos os campos.";
+            mensagemCadastro.textContent = "Preencha todos os campos.";
             return;
         }
         if (senha !== confirmaSenha) {
-            mensagem.textContent = "As senhas não coincidem.";
+            mensagemCadastro.textContent = "As senhas não coincidem.";
             return;
         }
 
@@ -26,14 +26,15 @@ if (formCadastro) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ nome, email, senha })
             });
+
             const dados = await resposta.json();
-            mensagem.textContent = dados.mensagem || dados.erro;
+            mensagemCadastro.textContent = dados.mensagem || dados.error;
             if (resposta.ok) {
                 formCadastro.reset();
                 setTimeout(() => window.location.href = "login.html", 2000);
             }
         } catch (error) {
-            mensagem.textContent = "Erro ao conectar com o servidor.";
+            mensagemCadastro.textContent = "Erro ao conectar com o servidor.";
         }
     });
 }
@@ -43,10 +44,10 @@ if (formLogin) {
         event.preventDefault();
         const email = document.getElementById("emailLogin").value.trim();
         const senha = document.getElementById("senhaLogin").value;
-        const mensagem = document.getElementById("mensagemLogin");
+        const mensagemLogin = document.getElementById("mensagemLogin");
         
         if (!email || !senha) {
-            mensagem.textContent = "Preencha os campos.";
+            mensagemLogin.textContent = "Preencha os campos.";
             return;
         }
 
@@ -55,16 +56,20 @@ if (formLogin) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
-                body: JSON.stringify({ email, senha })
+                body: JSON.stringify({email, senha})
             });
+
             const dados = await resposta.json();
+
             if (resposta.ok) {
                 window.location.href = "cardapio.html";
+                console.log("O script carregou com sucesso!");
             } else {
-                mensagem.textContent = dados.mensagem || dados.erro;
+                mensagemLogin.textContent = dados.mensagemLogin || dados.error;
             }
         } catch (error) {
-            mensagem.textContent = "Erro ao conectar com o servidor.";
+            console.error(error);
+            mensagemLogin.textContent = "Erro ao conectar com o servidor.";
         }
     });
 }
