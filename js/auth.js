@@ -1,6 +1,6 @@
 const formCadastro = document.getElementById("formCadastro");
 const formLogin = document.getElementById("formLogin");
-const API_URL = "http://localhost:3000";
+const API_URL = "https://cafe-central-ofc-mbgd.onrender.com/";
 
 if (formCadastro) {
     formCadastro.addEventListener("submit", async function(event) {
