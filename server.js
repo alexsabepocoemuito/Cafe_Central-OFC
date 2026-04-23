@@ -85,10 +85,10 @@ app.post("/mensagem", async (req,res) => {
         //(nome,email, mensagem)
     const nome = req.body.nome;
     const email = req.body.email;
-    const mensagem = req.body.mensagem;
+    const mensagem = req.body.mensagemCadastro;
 
     if(!nome || !email || !mensagem){
-        return res.status(400).json({mensagem: "Preencher todos os campos"});
+        return res.status(400).json({mensagemCadastro: "Preencher todos os campos"});
     }
 
     // 9 - faz o comando SQL de insercao
