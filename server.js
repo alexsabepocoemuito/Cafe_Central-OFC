@@ -28,7 +28,8 @@ const app = express();
 const listOrigins = [
     "http://localhost:5501", // ambiente local (live server)
     "http://127.0.0.1:5501", // variação de localhost
-    "https://alexsabepocoemuito.github.io" // dominio do frontend em produção
+    "https://alexsabepocoemuito.github.io", // dominio do frontend em produção
+    "" // URL conectada ao Render(Site Publicado)
 ]
 
 // 8. Ativa o CORS - libera a comunicação entre front-end e back-end
@@ -119,7 +120,6 @@ app.post("/cadastro", async (req,res) => {
         if(!nome || !email || !senha ){
             return res.status(400).json({erro:"Preencha todos os campos"});
         }
-
         // Crio um array[rows] e guardo dentro o resultado do select
         // Por isso (adicione o _usuario):
         const [rows] = await pool.execute( 
@@ -129,7 +129,6 @@ app.post("/cadastro", async (req,res) => {
         if(rows.length > 0){
             return res.status(409).json({erro: "E-mail já cadastrado"});
         };
-        
         // criptografa a senha e guarda dentro da variável
         const senhaHash = await bcrypt.hash(senha,10);   
             //gera o hash da senha com custo 10(mais seguro)

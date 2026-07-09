@@ -28,7 +28,16 @@ header.topo a {
 
 .logo a, img {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+.logo img{
+    width: 100%;
+    max-width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: end;
+
 }
 
 /* ======= MENU DE NAVEGAÇÃO ======= */

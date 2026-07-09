@@ -12,11 +12,15 @@ if (formCadastro) {
         const mensagemCadastro = document.getElementById("mensagemCadastro");
         
         if (!nome || !email || !senha || !confirmaSenha) {
-            mensagemCadastro.textContent = "Preencha todos os campos.";
+            mensagemCadastro.textContent = "Preencha todos os campos!";
             return;
         }
         if (senha !== confirmaSenha) {
-            mensagemCadastro.textContent = "As senhas não coincidem.";
+            mensagemCadastro.textContent = "As senhas não coincidem!";
+            return;
+        }
+        if (senha.length < 8){
+            mensagemCadastro.textContent = "A senha deve ter mais de 8 carateres."
             return;
         }
 
