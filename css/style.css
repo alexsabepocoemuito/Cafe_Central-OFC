@@ -23,21 +23,23 @@ header.topo a {
 }
 
 .logo {
-    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.logo a, img {
-    display: flex;
-    justify-content: space-between;
+.ImagemLogo {
+    width: 120px;
+    height: auto;
 }
 
-.logo img{
-    width: 100%;
-    max-width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: end;
-
+.iconeLogin {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
 }
 
 /* ======= MENU DE NAVEGAÇÃO ======= */

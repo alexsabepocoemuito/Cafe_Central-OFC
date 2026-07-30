@@ -1,5 +1,5 @@
 const listaItensContainer = document.querySelector("#ListaItens");
-const buscaInput = document.querySelector("#BuscarItens");
+const botoesCategoria = document.querySelectorAll(".btnCategoria");
 
 let itensCardapio = [];
 
@@ -49,5 +49,26 @@ if (buscaInput) {
         renderizarItens(filtrados);
     });
 }
+
+botoesCategoria.forEach(botao => {
+
+    botao.addEventListener("click", () => {
+
+        const categoria = botao.dataset.categoria;
+
+        if (categoria === "todos") {
+            renderizarItens(itensCardapio);
+        } else {
+
+            const filtrados = itensCardapio.filter(item =>
+                item.categoria === categoria
+            );
+
+            renderizarItens(filtrados);
+        }
+
+    });
+
+});
 
 carregarCardapio();
