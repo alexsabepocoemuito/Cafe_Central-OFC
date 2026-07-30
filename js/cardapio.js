@@ -29,11 +29,11 @@ function renderizarItens(lista) {
         card.classList.add("card");
 
         card.innerHTML = `
-            <img src="${item.img}" alt="${item.titulo}" onerror="this.src='https://via.placeholder.com/300x200?text=Cafe+Central'">
+            <img src="${item.img}" alt="${item.titulo}">
             <h3>${item.titulo}</h3>
             <p>${item.desc}</p>
             <span class="preco">${item.preco}</span>
-            <button class="btn-detalhes" onclick="alert('Detalhes de ${item.titulo} em breve!')">Ver detalhes</button>
+            <a href="detalhesCardapio.html?id=${item.id}"><button class="btn-detalhes">Ver detalhes</button></a>
         `;
         listaItensContainer.appendChild(card);
     });
