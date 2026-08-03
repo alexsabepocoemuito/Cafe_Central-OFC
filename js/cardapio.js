@@ -22,7 +22,7 @@ function renderizarItens(lista) {
     if (lista.length === 0) {
         listaItensContainer.innerHTML = "<p>Nenhum item encontrado.</p>";
         return;
-    }
+    };
 
     lista.forEach(item => {
         const card = document.createElement("div");
@@ -37,7 +37,7 @@ function renderizarItens(lista) {
         `;
         listaItensContainer.appendChild(card);
     });
-}
+};
 
 if (buscaInput) {
     buscaInput.addEventListener("input", function() {
@@ -48,7 +48,7 @@ if (buscaInput) {
         );
         renderizarItens(filtrados);
     });
-}
+};
 
 botoesCategoria.forEach(botao => {
 
@@ -65,7 +65,7 @@ botoesCategoria.forEach(botao => {
             );
 
             renderizarItens(filtrados);
-        }
+        };
 
     });
 
