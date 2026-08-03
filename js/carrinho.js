@@ -9,127 +9,101 @@ export function salvarCarrinho(carrinho) {
 }
 
 export function adicionarCarrinho(produto) {
-
     let carrinho = pegarCarrinho();
-
-    const existe = carrinho.find(item => item.id === produto.id);
-
+    
+    // Normalizar produto (converter titulo para nome)
+    const produtoNormalizado = {
+        id: produto.id,
+        nome: produto.titulo || produto.nome,
+        preco: typeof produto.preco === 'string' ? parseFloat(produto.preco) : produto.preco,
+        imagem: produto.img || produto.imagem,
+        categoria: produto.categoria
+    };
+    
+    const existe = carrinho.find(item => item.id === produtoNormalizado.id);
+    
     if (existe) {
         existe.quantidade++;
     } else {
         carrinho.push({
-            ...produto,
+            ...produtoNormalizado,
             quantidade: 1
         });
     }
-
+    
     salvarCarrinho(carrinho);
-
     atualizarQuantidadeCarrinho();
-
-    alert(`${produto.nome} adicionado ao carrinho!`);
+    
+    return produtoNormalizado.nome;
 }
 
-export function removerCarrinho(id){
-
+export function removerCarrinho(id) {
     let carrinho = pegarCarrinho();
-
     carrinho = carrinho.filter(item => item.id != id);
-
     salvarCarrinho(carrinho);
-
     atualizarQuantidadeCarrinho();
 }
 
-export function aumentarQuantidade(id){
-
+export function aumentarQuantidade(id) {
     let carrinho = pegarCarrinho();
-
-    const item = carrinho.find(produto=>produto.id==id);
-
-    if(item){
-
+    const item = carrinho.find(produto => produto.id == id);
+    
+    if (item) {
         item.quantidade++;
-
         salvarCarrinho(carrinho);
-
         atualizarQuantidadeCarrinho();
     }
-
 }
 
-export function diminuirQuantidade(id){
-
+export function diminuirQuantidade(id) {
     let carrinho = pegarCarrinho();
-
-    const item = carrinho.find(produto=>produto.id==id);
-
-    if(item){
-
+    const item = carrinho.find(produto => produto.id == id);
+    
+    if (item) {
         item.quantidade--;
-
-        if(item.quantidade<=0){
-
-            carrinho = carrinho.filter(produto=>produto.id!=id);
-
+        
+        if (item.quantidade <= 0) {
+            carrinho = carrinho.filter(produto => produto.id != id);
         }
-
+        
         salvarCarrinho(carrinho);
-
         atualizarQuantidadeCarrinho();
-
     }
-
 }
 
-export function calcularTotal(){
-
+export function calcularTotal() {
     const carrinho = pegarCarrinho();
-
     let total = 0;
-
-    carrinho.forEach(item=>{
-
+    
+    carrinho.forEach(item => {
         total += item.preco * item.quantidade;
-
     });
-
+    
     return total;
-
 }
 
-export function quantidadeItens(){
-
+export function quantidadeItens() {
     const carrinho = pegarCarrinho();
-
-    let total=0;
-
-    carrinho.forEach(item=>{
-
+    let total = 0;
+    
+    carrinho.forEach(item => {
         total += item.quantidade;
-
     });
-
+    
     return total;
-
 }
 
-export function limparCarrinho(){
-
+export function limparCarrinho() {
     localStorage.removeItem(CHAVE_CARRINHO);
-
     atualizarQuantidadeCarrinho();
-
 }
 
-export function atualizarQuantidadeCarrinho(){
-
+export function atualizarQuantidadeCarrinho() {
     const contador = document.querySelector("#contadorCarrinho");
-
-    if(contador){
-
-        contador.innerHTML = quantidadeItens();
-
+    
+    if (contador) {
+        const quantidade = quantidadeItens();
+        contador.innerHTML = quantidade;
+        contador.style.display = quantidade > 0 ? 'flex' : 'none';
     }
-
 }
