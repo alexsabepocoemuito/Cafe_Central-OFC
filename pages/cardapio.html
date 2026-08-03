@@ -22,39 +22,45 @@
                 <a href="login.html">Login</a>
             </nav>
         </header>
-
-        <main class="cardapio-container">
-            <h1 class="cardapio-titulo">Nosso Cardápio</h1>
-            
-            <div class="busca-container">
-                <input type="text" id="BuscarItens" placeholder="O que você deseja hoje?">
-            </div>
-s
-            <div class="Botoes-categoria">
-                <button class="btnCategoria"  data-categoria="cafes">
-                    ☕ Cafés Especiais
-                </button>
-                <button class="btnCategoria" data-categoria="doces">
-                    🍰 Doces e Sobremesas
-                </button>
-                <button class="btnCategoria" data-categoria="salgados">
-                    🥖 Salgados e Lanches
-                </button>
+            <main class="conteudo-cardapio">
                 
-            </div>
-            
+            <h1 class="cardapio-titulo">
+                Nosso Cardápio
+            </h1>
 
-            <div id="ListaItens" class="lista-itens">  
-                 Itens serão carregados aqui pelo JS 
+            <div class="busca-container">
+                <input
+                    type="text"
+                    id="BuscarItens"
+                    placeholder="O que você deseja hoje?">
             </div>
+                <aside class="Botoes-categoria">
 
-        </main>
+                    <button class="btnCategoria" data-categoria="cafes">
+                        ☕ Cafés Especiais
+                    </button>
+
+                    <button class="btnCategoria" data-categoria="doces">
+                        🍰 Doces e Sobremesas
+                    </button>
+
+                    <button class="btnCategoria" data-categoria="salgados">
+                        🥖 Salgados e Lanches
+                    </button>
+
+                </aside>
+
+                <section id="ListaItens" class="lista-itens">
+                    <!-- Produtos -->
+                </section>
+
+            </main>
 
         <footer class="rodape">
             <p>&reg; 2026 Café Central. Todos os Direitos Reservados</p>
             <p><a href="contato.html">Entre em Contato</a></p>
         </footer>
 
-        <script src="../js/cardapio.js"></script>
+        <script type="module" src="../js/cardapio.js"></script>
     </body>
 </html>

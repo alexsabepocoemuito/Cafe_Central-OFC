@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Carrinho - Café Central</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/cardapio.css">
+        <style>
+            .carrinho-container {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+
+            .carrinho-lista {
+                background: white;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .produtoCarrinho {
+                display: flex;
+                gap: 1rem;
+                padding: 1rem;
+                border-bottom: 1px solid #eee;
+                align-items: center;
+            }
+
+            .produtoCarrinho img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 4px;
+            }
+
+            .informacoes {
+                flex: 1;
+            }
+
+            .informacoes h3 {
+                margin: 0 0 0.5rem 0;
+                font-size: 1.1rem;
+            }
+
+            .informacoes p {
+                margin: 0.25rem 0;
+                color: #666;
+            }
+
+            .quantidade {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+                margin: 0.5rem 0;
+            }
+
+            .quantidade button {
+                width: 30px;
+                height: 30px;
+                border: 1px solid #ddd;
+                background: white;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+            .quantidade span {
+                min-width: 30px;
+                text-align: center;
+            }
+
+            .remover {
+                background: #dc3545;
+                color: white;
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-top: 0.5rem;
+            }
+
+            .subtotal {
+                font-weight: bold;
+                color: #8B6F47;
+            }
+
+            .carrinho-resumo {
+                background: white;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                height: fit-content;
+                position: sticky;
+                top: 100px;
+            }
+
+            .carrinho-resumo h2 {
+                margin-top: 0;
+                font-size: 1.5rem;
+            }
+
+            .resumo-item {
+                display: flex;
+                justify-content: space-between;
+                margin: 1rem 0;
+                padding: 0.5rem 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .resumo-total {
+                display: flex;
+                justify-content: space-between;
+                margin: 1.5rem 0;
+                font-size: 1.3rem;
+                font-weight: bold;
+                color: #8B6F47;
+            }
+
+            .btn-finalizar {
+                width: 100%;
+                padding: 1rem;
+                background: #8B6F47;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 1rem;
+                cursor: pointer;
+                margin-bottom: 0.5rem;
+            }
+
+            .btn-finalizar:hover {
+                background: #6B5437;
+            }
+
+            .btn-continuar {
+                width: 100%;
+                padding: 1rem;
+                background: white;
+                color: #8B6F47;
+                border: 2px solid #8B6F47;
+                border-radius: 4px;
+                font-size: 1rem;
+                cursor: pointer;
+            }
+
+            .btn-continuar:hover {
+                background: #f5f5f5;
+            }
+
+            .carrinho-vazio {
+                text-align: center;
+                padding: 3rem;
+            }
+
+            .carrinho-vazio h2 {
+                color: #8B6F47;
+            }
+
+            @media (max-width: 768px) {
+                .carrinho-container {
+                    grid-template-columns: 1fr;
+                }
+
+                .carrinho-resumo {
+                    position: static;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="topo">
+            <div class="logo">
+                <a href="../index.html">
+                    <img class="ImagemLogo" src="../img/cafe_central_logo_classic.png" alt="Logo Café Central">
+                </a>
+            </div>
+            <nav class="menu">
+                <a href="../index.html">Início</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="cardapio.html">Cardápio</a>
+                <a href="contato.html">Contato</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </header>
+
+        <main class="cardapio-container">
+            <h1 class="cardapio-titulo">Seu Carrinho</h1>
+
+            <div class="carrinho-container">
+                <div class="carrinho-lista" id="listaCarrinho">
+                    <!-- Itens do carrinho serão renderizados aqui -->
+                </div>
+
+                <div class="carrinho-resumo">
+                    <h2>Resumo</h2>
+                    <div class="resumo-item">
+                        <span>Subtotal:</span>
+                        <span id="valorTotal">R$ 0,00</span>
+                    </div>
+                    <div class="resumo-item">
+                        <span>Entrega:</span>
+                        <span>Grátis</span>
+                    </div>
+                    <div class="resumo-total">
+                        <span>Total:</span>
+                        <span id="valorTotal">R$ 0,00</span>
+                    </div>
+                    <button class="btn-finalizar" id="btnFinalizar">Finalizar Pedido</button>
+                    <a href="cardapio.html">
+                        <button class="btn-continuar">Continuar Comprando</button>
+                    </a>
+                    <button class="btn-continuar" id="btnLimpar" style="background: #dc3545; color: white; margin-top: 1rem;">
+                        Limpar Carrinho
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="rodape">
+            <p>&reg; 2026 Café Central. Todos os Direitos Reservados</p>
+            <p><a href="contato.html">Entre em Contato</a></p>
+        </footer>
+
+        <script type="module" src="../js/carrinhoPagina.js"></script>
+    </body>
+</html>
