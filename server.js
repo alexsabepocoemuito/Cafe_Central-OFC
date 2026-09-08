@@ -93,7 +93,7 @@ app.post("/mensagem", async (req,res) => {
     }
 
     // 9 - faz o comando SQL de insercao
-    await pool.execute("INSERT INTO tb_mensagem(nome_mensagem,email_mensagem,mensagem_mensagem) VALUES(?,?,?)",
+    await pool.execute("INSERT INTO tb_contato(nome,email,mensagem) VALUES(?,?,?)",
             [nome,email,mensagem]);
 
     // 10 - O servidor envia uma mensagem de volta no formato JSON
@@ -102,7 +102,7 @@ app.post("/mensagem", async (req,res) => {
     //11. Envia uma mensagem de volta para o navegador
     res.send("Mensagem recebida com sucesso!");
     } catch(erro){
-        console.error(error);
+        console.error(erro);
         return res.status(500).json({ mensagem: "Erro interno no servidor" });
     }
 });
@@ -121,9 +121,8 @@ app.post("/cadastro", async (req,res) => {
             return res.status(400).json({erro:"Preencha todos os campos"});
         }
         // Crio um array[rows] e guardo dentro o resultado do select
-        // Por isso (adicione o _usuario):
         const [rows] = await pool.execute( 
-            "SELECT id_usuario FROM tb_usuario WHERE email_usuario=?",[email] 
+            "SELECT id FROM tb_usuarios WHERE email=?",[email] 
         );
 
         if(rows.length > 0){
@@ -135,7 +134,7 @@ app.post("/cadastro", async (req,res) => {
 
         // Inserir os dados no banco de dados
         await pool.execute( // executa o INSERT no banco
-            "INSERT INTO tb_usuario(nome_usuario, email_usuario, senha_usuario) VALUES(?,?,?)",
+            "INSERT INTO tb_usuarios(nome, email, senha) VALUES(?,?,?)",
                         [nome,email,senhaHash] // substitui os ? pelos valores reais
         );
         // retorna 201 (criado com sucesso)
@@ -163,7 +162,7 @@ app.post("/login", async (req,res) => {
         // Crio um array[rows] e guardo dentro o resultado do select
         // ... após o seu SELECT
         const [rows] = await pool.execute( 
-            "SELECT * FROM tb_usuario WHERE email_usuario=?",[email] 
+            "SELECT * FROM tb_usuarios WHERE email=?",[email] 
         );
 
         if(rows.length === 0){
@@ -173,11 +172,11 @@ app.post("/login", async (req,res) => {
         const usuario = rows[0];
 
         // Se o log acima mostrar que o campo está vazio ou não existe, o erro está aqui:
-        if (!usuario.senha_usuario) {
+        if (!usuario.senha) {
             return res.status(500).json({erro: "Erro interno: A coluna de senha não foi carregada."});
         }
 
-        const senhaCorreta = await bcrypt.compare(senha, usuario.senha_usuario);
+        const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
 
         if(!senhaCorreta){
             // senha hash for diferente da senha digitada
@@ -187,9 +186,9 @@ app.post("/login", async (req,res) => {
 
         req.session.usuario = {
             // cria a sessão no servidor com os dados do usuário
-            id: usuario.id_usuario, // ID interno do usuário
-            nome: usuario.nome_usuario, // nome para exibir na interface
-            email: usuario.email_usuario // email para referência futura
+            id: usuario.id, // ID interno do usuário
+            nome: usuario.nome, // nome para exibir na interface
+            email: usuario.email // email para referência futura
         };
 
         res.json({mensagem:"Login realizado com sucesso!"});
