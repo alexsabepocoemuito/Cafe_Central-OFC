@@ -29,7 +29,7 @@ form.addEventListener("submit", async function(event){
     */
     try{
         // 6. Envia os dados para o servidor usando fetch()
-        const resposta = await fetch("https://cafe-central-ofc-mbgd.onrender.com/mensagem",{
+        const resposta = await fetch("https://cafe-central-ofc.onrender.com/mensagem",{
             method:"POST", // POST = estamos enviando dados
             headers: {
                 "Content-Type":"application/json" // avisa que formato é JSON
