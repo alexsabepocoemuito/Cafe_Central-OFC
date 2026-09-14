@@ -8,22 +8,16 @@ require("dotenv").config();
 
 // 1. Importar o Express - ele cria e gerencia o servidor
 const express = require("express");
-
 // 2. Importar o CORS - permite que o navegador "converse" com o servidor
 const cors = require("cors");
-
 // 3. Importa o session  que permite gerenciar sessões de usuario
 const session = require("express-session");
-
 // 4. Importa o bcryptjs - para criptografia e compara senhas
 const bcrypt = require("bcryptjs");
-
 // 5. Importa a conexão com o banco de dados
 const pool = require("./db.js");
-
 // 6. Cria o servidor (como ligar um pc por ex)
 const app = express();
-
 // 7. Cria uma lista de instância de conexões
 const listOrigins = [
     "http://localhost:5501", // ambiente local (live server)
@@ -93,7 +87,7 @@ app.post("/mensagem", async (req,res) => {
     }
 
     // 9 - faz o comando SQL de insercao
-    await pool.execute("INSERT INTO tb_contato(nome,email,mensagem) VALUES(?,?,?)",
+    await pool.execute("INSERT INTO tb_contatos (nome,email,mensagem) VALUES(?,?,?)",
             [nome,email,mensagem]);
 
     // 10 - O servidor envia uma mensagem de volta no formato JSON
