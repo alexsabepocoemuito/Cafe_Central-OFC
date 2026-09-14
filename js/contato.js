@@ -38,22 +38,30 @@ form.addEventListener("submit", async function(event){
                 // Converte o objeto para texto JSON
         });
         
-        // 7. Lê a resposta que o servidor enviou de volta
-        const dados = await resposta.text();
-        
+        // 7. Lê a resposta que o servidor enviou de volta  
+        const dados = await resposta.json();
         // 8. Mostra a resposta para o usuário
-        alert(dados);
-        
+        if (!resposta.ok) {
+            alert(dados.mensagem || dados.mensagemCadastro || "Erro ao enviar mensagem");
+            return;
+        }
         // 9.  Limpa os campos do formulário após o envio
+        alert(dados.mensagem);
         form.reset();
+
         
         
-        }catch(erro){
+        } catch (erro) {
+        console.error(erro);
+        alert("Erro ao conectar com o servidor.");
+    }
+});
+          
+        
+        
+        /*catch(erro){
             // 10. Se algo der errado, avisa o usuário
             alert(`Erro: ${erro}`);
         };
         
-});
-
-
-
+});*/

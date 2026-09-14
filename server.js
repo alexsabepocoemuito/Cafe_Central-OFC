@@ -80,7 +80,8 @@ app.post("/mensagem", async (req,res) => {
         //(nome,email, mensagem)
     const nome = req.body.nome;
     const email = req.body.email;
-    const mensagem = req.body.mensagemCadastro;
+    const mensagem = req.body.mensagem;
+
 
     if(!nome || !email || !mensagem){
         return res.status(400).json({mensagemCadastro: "Preencher todos os campos"});
@@ -91,15 +92,16 @@ app.post("/mensagem", async (req,res) => {
             [nome,email,mensagem]);
 
     // 10 - O servidor envia uma mensagem de volta no formato JSON
-    res.status(201).json({mensagem: "Mensagem enviada com sucesso"});
-
-    //11. Envia uma mensagem de volta para o navegador
-    res.send("Mensagem recebida com sucesso!");
+    return res.status(201).json({
+        mensagem: "Mensagem enviada com sucesso"
+    });
+    
+    
     } catch(erro){
         console.error(erro);
         return res.status(500).json({ mensagem: "Erro interno no servidor" });
     }
-});
+    });
 
 // 2. Define a rota POST "/cadastro"
 // aponta para cadastro.html
